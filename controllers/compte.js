@@ -1,8 +1,8 @@
 var Compte = require('../models/compte');
 
-//Simple version, without validation or sanitation
+//Test controller
 exports.test = function (req, res) {
-    res.send('Greetings from the Test controller!');
+    res.render('pages/index');
 };
 
 exports.compte_create = function (req, res) {

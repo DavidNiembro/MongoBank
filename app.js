@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 
 var compte = require('./routes/compte'); // Imports routes for the comptes
 var app = express();
+app.set('view engine', 'ejs');
 
 
 // Set up mongoose connection

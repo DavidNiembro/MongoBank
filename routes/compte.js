@@ -1,13 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-// Require the controllers WHICH WE DID NOT CREATE YET!!
+// Require the controllers
 var compte_controller = require('../controllers/compte');
 
 
 // a simple test url to check that all of our files are communicating correctly.
 router.get('/test', compte_controller.test);
-
 
 router.post('/create', compte_controller.compte_create);
 
