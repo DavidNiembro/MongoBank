@@ -2,7 +2,7 @@ var Compte = require('../models/compte');
 
 //Test controller
 exports.test = function (req, res) {
-    res.render('pages/index');
+    res.render('pages/compte');
 };
 
 exports.compte_create = function (req, res) {

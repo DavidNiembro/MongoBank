@@ -4,6 +4,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var compte = require('./routes/compte'); // Imports routes for the comptes
+var home = require('./routes/home'); // Imports routes for the comptes
+
 var app = express();
 app.set('view engine', 'ejs');
 
@@ -21,6 +23,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/comptes', compte);
+app.use('/', home);
 
 var port = 1234;
 
