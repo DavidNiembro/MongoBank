@@ -4,6 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 const session = require('express-session'); //we're using 'express-session' as 'session' here
 const bcrypt = require("bcrypt");
+var mongoose = require('mongoose');
 
 var compte = require('./routes/compte'); // Imports routes for the comptes
 var home = require('./routes/home'); // Imports routes for the comptes
@@ -15,7 +16,6 @@ app.set('view engine', 'ejs');
 
 
 // Set up mongoose connection
-var mongoose = require('mongoose');
 
 const User = require('./models/user'); // we shall create this (model/user.js) soon 
 
@@ -45,66 +45,6 @@ var port = 1234;
 
 
 
-
-/*
-1. User Sign up
-=============
-*/
-// here we're expecting username, fullname, email and password in body of the request for signup. Note that we're using post http method
-app.post('/signup', (req, res) => {
-    let {username, fullname, email, password} = req.body; // this is called destructuring. We're extracting these variables and their values from 'req.body'
-      
-      let userData = {
-          username,
-          password: bcrypt.hashSync(password, 5), // we are using bcrypt to hash our password before saving it to the database
-          fullname,
-          email
-      };
-      
-      let newUser = new User(userData);
-      newUser.save().then(error => {
-          if (!error) {
-              return res.status(201).json('signup successful')
-          } else {
-              if (error.code ===  11000) { // this error gets thrown only if similar user record already exist.
-                  return res.status(409).send('user already exist!')
-              } else {
-                  console.log(JSON.stringify(error, null, 2)); // you might want to do this to examine and trace where the problem is emanating from
-                  return res.status(500).send('error signing up user')
-              }
-          }
-      })
-  })
-  
-  /*
-  2. User Sign in
-  =============
-  */
-  //We will be using username and password, but it can be improved or modified (e.g email and password or some other ways as you please)
-  app.post('/login', (req, res) => {
-    let {username, password} = req.body;
-      User.findOne({username: username}, 'username email password', (err, userData) => {
-          if (!err) {
-              let passwordCheck = bcrypt.compareSync(password, userData.password);
-              if (passwordCheck) { // we are using bcrypt to check the password hash from db against the supplied password by user
-                  req.session.user = {
-                    email: userData.email,
-                    username: userData.username,
-                    id: userData._id
-                  }; // saving some user's data into user's session
-                  req.session.user.expires = new Date(
-                    Date.now() + 3 * 24 * 3600 * 1000 // session expires in 3 days
-                  );
-                  res.status(200).send('You are logged in, Welcome!');
-              } else {
-                  res.status(401).send('incorrect password');
-              }
-          } else {
-              res.status(401).send('invalid login credentials')
-          }
-      })
-  })
-  
   /*
   3. authorization
   =============
@@ -117,13 +57,6 @@ app.post('/signup', (req, res) => {
       res.status(401).send('Authrization failed! Please login');
     }
   });
-  
-  app.get('/protected', (req, res) => {
-    res.send(`You are seeing this because you have a valid session.
-          Your username is ${req.session.user.username} 
-          and email is ${req.session.user.email}.
-      `)
-  })
   
   /*
   4. Logout

@@ -7,4 +7,6 @@ var login_controller = require('../../controllers/auth/login');
 // login index
 router.get('/', login_controller.index);
 
+router.post('/', login_controller.login);
+
 module.exports = router;
