@@ -1,4 +1,5 @@
 const User = require('../../models/user'); // we shall create this (model/user.js) soon 
+const bcrypt = require("bcrypt");
 
 //Index
 exports.index = function (req, res) {
