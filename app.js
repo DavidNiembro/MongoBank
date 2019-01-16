@@ -21,7 +21,7 @@ const User = require('./models/user'); // we shall create this (model/user.js) s
 
 var dev_db_url = 'mongodb://127.0.0.1:27017/first';
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB,{ useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
