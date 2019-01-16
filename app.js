@@ -38,11 +38,8 @@ app.use(
 
 app.use('/login', login);
 app.use('/register', register);
-app.use('/comptes', compte);
 app.use('/', home);
-
 var port = 1234;
-
 
 
   /*
@@ -54,16 +51,17 @@ var port = 1234;
     if (req.session.user) {
       next();
     } else {
-      res.status(401).send('Authrization failed! Please login');
+      res.status(401).send('');
     }
   });
-  
+
+  app.use('/comptes', compte);
   /*
   4. Logout
   =============
   */
   app.all('/logout', (req, res) => {
-    delete req.session.user; // any of these works
+        delete req.session.user; // any of these works
         req.session.destroy(); // any of these works
       res.status(200).send('logout successful')
   })
@@ -151,5 +149,4 @@ var port = 1234;
 
 
 app.listen(port, () => {
-    console.log('Server is up and running on port numner ' + port);
 });
