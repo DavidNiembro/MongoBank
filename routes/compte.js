@@ -4,9 +4,17 @@ var router = express.Router();
 // Require the controllers
 var compte_controller = require('../controllers/compte');
 
+var sessionChecker = (req, res, next) => {
+
+    if (!req.session.hasOwnProperty('user') || !req.cookies.hasOwnProperty('id')) {
+        res.redirect('/dashboard');
+    } else {
+        next();
+    }   
+  };
 
 // a simple test url to check that all of our files are communicating correctly.
-router.get('/test', compte_controller.test);
+router.get('/test', sessionChecker, compte_controller.test);
 
 router.post('/create', compte_controller.compte_create);
 

@@ -1,42 +1,52 @@
-var Compte = require('../models/compte');
+var User = require('../models/user');
 
 //Test controller
 exports.test = function (req, res) {
+     
+    var newvalues = { $addToSet: {compte: [{"courant":[]}]}};
+    var myquery = { _id: req.session.user.id };
+
+    User.updateOne(myquery, newvalues, function(err, res) {
+    if (err) throw err;
+       
+    }); 
     res.render('pages/compte');
 };
 
 exports.compte_create = function (req, res) {
-    var compte = new Compte(
-        {
-            intern_id: req.body.intern_id,
-            fkUser: req.body.fkUser
+    
+    var newvalues = { 
+        $set: {
+            compte: [{
+                "Courant":[]
+            }]
         }
-    );
+    };
+    var myquery = { _id: req.session.user.id };
 
-    compte.save(function (err) {
-        if (err) {
-            return err;
-        }
-        res.send('Compte Created successfully')
-    })
+    User.updateOne(myquery, newvalues, function(err, res) {
+    if (err) throw err;
+       
+    }); 
+    res.render('pages/compte');
 };
 
 exports.compte_details = function (req, res) {
-    Compte.findById(req.params.id, function (err, compte) {
+    User.findById(req.params.id, function (err, compte) {
         if (err) return next(err);
         res.send(compte);
     })
 };
 
 exports.compte_update = function (req, res) {
-    Compte.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, compte) {
+    User.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, compte) {
         if (err) return next(err);
         res.send('Compte udpated.');
     });
 };
 
 exports.compte_delete = function (req, res) {
-    Compte.findByIdAndRemove(req.params.id, function (err) {
+    User.findByIdAndRemove(req.params.id, function (err) {
         if (err) return next(err);
         res.send('Deleted successfully!');
     })

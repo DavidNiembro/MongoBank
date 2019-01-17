@@ -24,12 +24,10 @@ let userSchema = new Schema({
         type: String,
         required: true
     },
-    gender: {
-        type: String,
-        required: false
+    compte:{
+        type: Array,
+        required:false
     },
-    passResetKey: String,
-    passKeyExpires: Number,
     createdAt: {
         type: Date,
         required: false

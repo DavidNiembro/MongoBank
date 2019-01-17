@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 const session = require('express-session'); //we're using 'express-session' as 'session' here
 const bcrypt = require("bcrypt");
 var mongoose = require('mongoose');
+var cookieParser = require('cookie-parser')
 
 var compte = require('./routes/compte'); // Imports routes for the comptes
 var home = require('./routes/home'); // Imports routes for the comptes
@@ -30,12 +31,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(
     session({
+      key: 'id',
       secret: "iy98hcbh489n38984y4h498", // don't put this into your code at production.  Try using saving it into environment variable or a config file.
       resave: true,
-      saveUninitialized: false
+      saveUninitialized: false,
+      cookie: {
+        expires: 600000
+      }
     })
   );
-
+app.use(cookieParser());
 app.use('/login', login);
 app.use('/register', register);
 app.use('/', home);
@@ -48,12 +53,19 @@ var port = 1234;
   A simple way of implementing authorization is creating a simple middleware for it. Any endpoint that come after the authorization middleware won't pass if user doesn't have a valid session
   */
   app.use((req, res, next) => {
-    if (req.session.user) {
+        if (req.cookies.id && !req.session.user) {
+          res.clearCookie('id');        
+      }
       next();
-    } else {
-      res.status(401).send('');
-    }
   });
+
+  var sessionChecker = (req, res, next) => {
+    if (req.session.user && req.cookies.id) {
+        res.redirect('/dashboard');
+    } else {
+        next();
+    }    
+  };
 
   app.use('/comptes', compte);
   /*
