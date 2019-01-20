@@ -1,15 +1,8 @@
 var User = require('../models/user');
 
 //Test controller
-exports.test = function (req, res) {
+exports.index = function (req, res) {
      
-    var newvalues = { $addToSet: {compte: [{"courant":[]}]}};
-    var myquery = { _id: req.session.user.id };
-
-    User.updateOne(myquery, newvalues, function(err, res) {
-    if (err) throw err;
-       
-    }); 
     res.render('pages/compte');
 };
 
@@ -32,10 +25,7 @@ exports.compte_create = function (req, res) {
 };
 
 exports.compte_details = function (req, res) {
-    User.findById(req.params.id, function (err, compte) {
-        if (err) return next(err);
-        res.send(compte);
-    })
+    
 };
 
 exports.compte_update = function (req, res) {

@@ -24,7 +24,7 @@ exports.register = function (req, res) {
       let newUser = new User(userData);
       newUser.save().then(error => {
           if (!error) {
-              return res.status(201).json('signup successful')
+                res.redirect('/login');
           } else {
               if (error.code ===  11000) { // this error gets thrown only if similar user record already exist.
                   return res.status(409).send('user already exist!')

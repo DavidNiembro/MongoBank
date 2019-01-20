@@ -11,11 +11,13 @@ exports.index = function (req, res) {
 */
 //We will be using username and password, but it can be improved or modified (e.g email and password or some other ways as you please)  
 exports.login = function (req, res) {
-
+    
     let {username, password} = req.body;
+    console.log(username)
     User.findOne({username: username}, 'username email password', (err, userData) => {
         if(userData==null){
-            res.status(401).send('invalid login credentials')
+           //invalid login credentials'
+           res.redirect('/login');
         }else{
             if (!err) {
                 let passwordCheck = bcrypt.compareSync(password, userData.password);
@@ -29,12 +31,14 @@ exports.login = function (req, res) {
                     req.session.user.expires = new Date(
                     Date.now() + 3 * 24 * 3600 * 1000 // session expires in 3 days
                     );
-                    res.status(200).send('You are logged in, Welcome!');
+                    res.redirect('/');
                 } else {
-                    res.status(401).send('incorrect password');
+                    //incorrect password
+                    res.redirect('/login');
                 }
             } else {
-                res.status(401).send('invalid login credentials')
+                //invalid login credentials'
+                res.redirect('/login');
             }
         }
     })
