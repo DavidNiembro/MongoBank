@@ -2,10 +2,10 @@ var User = require('../models/user');
 
 //Test controller
 exports.index = function (req, res) {
-    User.findOne({username : "DavidNiembro"}, function(err, result) {
+    User.findOne({_id : req.session.user.id}, function(err, result) {
         if (err) throw err;
             comptes = result.comptes;
-            res.render('pages/dashboard',{comptes:comptes});
+            res.render('pages/dashboard',{comptes:comptes,page:'dashboard'});
     });
 };
 
@@ -28,7 +28,7 @@ exports.compte_create = function (req, res) {
 };
 
 exports.compte_details = function (req, res) {
-    res.render('pages/compte')
+    res.render('pages/compte',{page:'dashboard'})
     
 };
 

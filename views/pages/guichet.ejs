@@ -5,9 +5,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
     <% include parts/sidebar%>
-    <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -25,20 +23,24 @@
           <!-- Area Chart -->
           <div class="card border-0 shadow mb-4">
             <div class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Transactions</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Déposer de l'argent</h6>
+              <!-- Card Header Dropdown -->
             </div>
             <div class="card-body">
               <div class="chart-area">
-                <canvas id="myAreaChart"></canvas>
+                <form method="POST" action="/guichet">
+                  <input type="number" name="amount" >
+                  <select name="id"> 
+                    <% comptes.forEach(function(compte) { %>
+                            <option value="<%= compte._id %>"><%= compte.name %></option>
+                    <% }); %>
+                  </select>
+                  <button type="submit">Déposer l'argent</button>
+                </form>
               </div>
             </div>
           </div>
-          <% comptes.forEach(function(compte) { %>
-            <div class="card border-0 shadow mb-4">
-                <p><%= compte.name %></p>
-                <a href="/<%= compte._id %>" class="btn btn-primary">voir le compte</a>
-            </div>
-        <% }); %>
+
 
 
         <!-- /.container-fluid -->
@@ -98,12 +100,6 @@
 
   <!-- Custom scripts for all pages-->
   <script src="sb-admin-2.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="Chart.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="chart-area-demo.js"></script>
 
 </body>
 
