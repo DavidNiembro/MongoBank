@@ -24,7 +24,7 @@ let userSchema = new Schema({
         type: String,
         required: true
     },
-    compte:{
+    comptes:{
         type: Array,
         required:false
     },

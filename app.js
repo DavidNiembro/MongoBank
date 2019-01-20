@@ -9,7 +9,6 @@ var cookieParser = require('cookie-parser')
 var cors = require('cors')
 
 var compte = require('./routes/compte'); // Imports routes for the comptes
-var home = require('./routes/home'); // Imports routes for the comptes
 var login = require('./routes/auth/login'); // Imports routes for the comptes
 var register = require('./routes/auth/register'); // Imports routes for the comptes
 

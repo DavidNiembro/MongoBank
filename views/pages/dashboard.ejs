@@ -9,7 +9,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         <div class="sidebar-brand-text mx-3">MangoBank</div>
       </a>
 
@@ -18,17 +18,9 @@
 
       <!-- Dashboards Accordion Menu -->
       <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboards</span>
+        <a class="nav-link" href="/" >
+          <span>Tableau de bord</span>
         </a>
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Dashboard Examples:</h6>
-            <a class="collapse-item" href="index.html">Default Dashboard</a>
-            <a class="collapse-item" href="#">Social Dashboard</a>
-          </div>
-        </div>
       </li>
 
       <!-- Divider -->
@@ -92,21 +84,7 @@
           <!-- Area Chart -->
           <div class="card border-0 shadow mb-4">
             <div class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-              <!-- Card Header Dropdown -->
-              <div class="dropdown no-arrow">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-ellipsis-v fa-sm fa-fw mx-1 text-gray-400"></i>
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                  <div class="dropdown-header">Dropdown Header:</div>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </div>
+              <h6 class="m-0 font-weight-bold text-primary">Transactions</h6>
             </div>
             <div class="card-body">
               <div class="chart-area">
@@ -114,11 +92,18 @@
               </div>
             </div>
           </div>
-          
+          <% comptes.forEach(function(compte) { %>
+            <div class="card border-0 shadow mb-4">
+                <p><%= compte.name %></p>
+                <a href="/<%= compte._id %>" class="btn btn-primary">voir le compte</a>
+            </div>
+        <% }); %>
+
 
         <!-- /.container-fluid -->
 
       </div>
+      
       <!-- End of Main Content -->
 
       <!-- Footer -->
@@ -147,15 +132,17 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Prêt à quitter ?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Cliquez sur "Se déconnecter" si vous êtes prêt à laisser cette session</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+          <form method="POST" action="/logout">
+            <button type="submit" class="btn btn-primary">Se déconnecter</button>
+          </form>
         </div>
       </div>
     </div>

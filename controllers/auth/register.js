@@ -1,4 +1,6 @@
-const User = require('../../models/user'); // we shall create this (model/user.js) soon 
+const User = require('../../models/user');
+var Compte = require('../../models/compte');
+
 const bcrypt = require("bcrypt");
 
 //Index
@@ -20,8 +22,17 @@ exports.register = function (req, res) {
           fullname,
           email
       };
+
+      let epargneData = {
+         name:'Epargne',
+      };
+      let courantData = {
+         name:'Courant',
+      };
       
       let newUser = new User(userData);
+      newUser.comptes.push(new Compte(epargneData))
+      newUser.comptes.push(new Compte(courantData))
       newUser.save().then(error => {
           if (!error) {
                 res.redirect('/login');

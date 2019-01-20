@@ -16,13 +16,13 @@ var sessionChecker = (req, res, next) => {
 // a simple test url to check that all of our files are communicating correctly.
 router.get('/', sessionChecker, compte_controller.index);
 
-router.post('/create', compte_controller.compte_create);
+router.post('/create', sessionChecker, compte_controller.compte_create);
 
-router.get('/:id', compte_controller.compte_details);
+router.get('/:id', sessionChecker, compte_controller.compte_details);
 
-router.put('/:id/update', compte_controller.compte_update);
+router.put('/:id/update', sessionChecker, compte_controller.compte_update);
 
-router.delete('/:id/delete', compte_controller.compte_delete);
+router.delete('/:id/delete', sessionChecker, compte_controller.compte_delete);
 
 
 module.exports = router;
