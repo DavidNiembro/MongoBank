@@ -22,13 +22,22 @@
 
           <!-- Area Chart -->
           <div class="card border-0 shadow mb-4">
-            <% compte.transactions.forEach(function(transaction) { %>
-             <%= transaction %></h6>
-                    
-            <% }); %>
+            <table class="table table-striped">
+                <tr>
+                  <th scope="col">De</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Montants</th>
+                </tr>
+                <% compte.transactions.forEach(function(transaction) { %>
+                  <tr>
+                      <td><%= transaction.from %></td>
+                      <td>23.01.2019</td>
+                      <td><%= transaction.amount %></td>
+                  </tr>
+                <% }); %>
+                <tr>
+            </table>
           </div>
-
-
 
         <!-- /.container-fluid -->
 
