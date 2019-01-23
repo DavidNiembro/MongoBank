@@ -31,7 +31,7 @@
                 <% compte.transactions.forEach(function(transaction) { %>
                   <tr>
                       <td><%= transaction.from %></td>
-                      <td>23.01.2019</td>
+                      <td><%= transaction.createdAt %></td>
                       <td><%= transaction.amount %></td>
                   </tr>
                 <% }); %>

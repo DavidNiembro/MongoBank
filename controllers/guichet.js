@@ -17,7 +17,8 @@ exports.guichet_create = function (req, res) {
         if (err) throw err;
         user.comptes.forEach(compte => {
             if(compte._id == id){
-              compte.transactions.push(new Transaction({amount:amount,from:req.session.user.id}));
+                dateNow = new Date();
+                compte.transactions.push(new Transaction({amount:amount,from:req.session.user.id,createdAt:dateNow}));
             }
         });
         var myquery = { _id: req.session.user.id };

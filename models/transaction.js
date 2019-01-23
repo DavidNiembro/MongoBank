@@ -14,8 +14,8 @@ let transactionSchema = new Schema({
         trim: true
     },
     createdAt: {
-        type: Date,
-        required: false
+        type: String,
+        required: true
     },
     updatedAt: {
         type: Number,
@@ -25,11 +25,11 @@ let transactionSchema = new Schema({
 
 transactionSchema.pre('save', function (next) {
   
-  var currentDate = new Date().getTime();
+  /*var currentDate = new Date().getTime();
   this.updatedAt = currentDate;
   if (!this.created_at) {
     this.createdAt = currentDate;
-  }
+  }*/
   next();
 })
 
