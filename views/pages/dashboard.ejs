@@ -33,12 +33,16 @@
               </div>
             </div>
           </div>
-          <% comptes.forEach(function(compte) { %>
-            <div class="card border-0 shadow mb-4">
-                <p><%= compte.name %></p>
-                <a href="/<%= compte._id %>" class="btn btn-primary">voir le compte</a>
-            </div>
-        <% }); %>
+          <div class="row">
+            <% comptes.forEach(function(compte) { %>
+              <div class="col-lg-6">
+                <div class="card border-0 shadow mb-4">
+                    <p><%= compte.name %></p>
+                    <a href="/<%= compte._id %>" class="btn btn-primary" style="width: 30%;">voir le compte</a>
+                </div>
+              </div>
+            <% }); %>
+          </div>
 
 
         <!-- /.container-fluid -->
