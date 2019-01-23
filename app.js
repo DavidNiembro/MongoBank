@@ -31,7 +31,7 @@ app.use(function(req, res, next) {
 
 const User = require('./models/user'); // we shall create this (model/user.js) soon 
 
-var dev_db_url = 'mongodb://127.0.0.1:27017/first';
+var dev_db_url = 'mongodb://127.0.0.1:27017/mongoBank';
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB,{useNewUrlParser: true });
 mongoose.Promise = global.Promise;
