@@ -22,10 +22,30 @@
 
           <!-- Area Chart -->
           <div class="card border-0 shadow mb-4">
-            <% compte.transactions.forEach(function(transaction) { %>
-             <%= transaction %></h6>
-                    
-            <% }); %>
+            <div class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">Transférer de l'argent</h6>
+              <!-- Card Header Dropdown -->
+            </div>
+            <div class="card-body">
+              <div class="chart-area">
+                <form method="POST" action="/transactions">
+                  <input type="number" name="amount" >
+                  <label>De</label>
+                  <select name="id"> 
+                    <% comptes.forEach(function(compte) { %>
+                            <option value="<%= compte._id %>"><%= compte.name %></option>
+                    <% }); %>
+                  </select>
+                  <label>A</label>
+                  <select name="id"> 
+                    <% comptes.forEach(function(compte) { %>
+                            <option value="<%= compte._id %>"><%= compte.name %></option>
+                    <% }); %>
+                  </select>
+                  <button type="submit">Transférer l'argent</button>
+                </form>
+              </div>
+            </div>
           </div>
 
 
@@ -87,12 +107,6 @@
 
   <!-- Custom scripts for all pages-->
   <script src="sb-admin-2.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="Chart.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="chart-area-demo.js"></script>
 
 </body>
 

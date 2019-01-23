@@ -12,7 +12,7 @@ var compte = require('./routes/compte'); // Imports routes for the comptes
 var guichet = require('./routes/guichet'); // Imports routes for the comptes
 var login = require('./routes/auth/login'); // Imports routes for the comptes
 var register = require('./routes/auth/register'); // Imports routes for the comptes
-
+var transactions = require('./routes/transactions'); // Imports routes for the comptes
 var app = express();
 app.set('view engine', 'ejs');
 
@@ -66,6 +66,7 @@ var port = 1234;
   A simple way of implementing authorization is creating a simple middleware for it. Any endpoint that come after the authorization middleware won't pass if user doesn't have a valid session
   */
   app.use('/guichet', guichet);
+  app.use('/transactions', transactions);
   app.use('/', compte);
   
 
