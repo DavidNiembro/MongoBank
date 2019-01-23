@@ -1,5 +1,4 @@
 var User = require('../models/user');
-var Compte = require('../models/compte');
 var Transaction = require('../models/transaction');
 
 //Test controller
