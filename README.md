@@ -37,3 +37,16 @@ db.mycollection.updateOne({name:{$eq : "sue"} },{$set : {age : "18 "} })
 ```console
 db.mycollection.deleteOne({name : "sue"})
 ```
+## Installation MongoBank
+
+### Prérequis
+
+1. Mongo v4.0 or later
+2. NodeJS v10.15 or later
+
+### Installation
+
+1. Clonez le repository
+2. Ouvrez un interpréteur de commande et allez dans le dossier du projet
+3. Tapez la commande **npm install**
+4. Une fois l'installation des dépendances terminées, tapez la commande **npm start**
