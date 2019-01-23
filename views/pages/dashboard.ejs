@@ -36,9 +36,14 @@
           <div class="row">
             <% comptes.forEach(function(compte) { %>
               <div class="col-lg-6">
-                <div class="card border-0 shadow mb-4">
-                    <p><%= compte.name %></p>
-                    <a href="/<%= compte._id %>" class="btn btn-primary" style="width: 30%;">voir le compte</a>
+                <div class="border-0 shadow mb-4">
+                    <div class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary"><%= compte.name %></h6>
+                    </div>
+                    <p style="padding-left: 20px; padding-top: 20px; font-size: 25px;">Montant: </p>
+                    <div class="text-center" style="padding-top: 20px; padding-bottom: 20px;">
+                      <a href="/<%= compte._id %>" class="btn btn-primary" style="width: 30%;">Aller</a>
+                    </div>
                 </div>
               </div>
             <% }); %>
