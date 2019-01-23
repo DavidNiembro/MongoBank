@@ -17,9 +17,8 @@ exports.transactions_create = function (req, res) {
         if (err) throw err;
         user.comptes.forEach(compte => {
             if(compte._id == id){
-               dateNow = new Date().getTime();
-               console.log(dateNow);
-            compte.transactions.push(new Transaction({amount:amount,from:req.session.user.id,date:dateNow}));
+                dateNow = new Date().getTime();
+                compte.transactions.push(new Transaction({amount:amount,from:req.session.user.id,date:dateNow}));
             }
         });
         var myquery = { _id: req.session.user.id };

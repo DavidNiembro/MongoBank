@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // we create a user schema
 let transactionSchema = new Schema({
     from: {
-        type: String,
+        type: Object,
         required: true,
         trim: true
     },

@@ -1,5 +1,6 @@
 var User = require('../models/user');
-
+var moment = require('moment');
+moment.locale('fr');
 //Test controller
 exports.index = function (req, res) {
     User.findOne({_id : req.session.user.id}, function(err, result) {
@@ -40,7 +41,7 @@ exports.compte_details = function (req, res) {
             result.comptes.forEach(compte => {
                 if(compte._id==req.params.id){
                     console.log(compte)
-                    res.render('pages/compte',{compte:compte,page:'dashboard'})
+                    res.render('pages/compte',{ moment:moment,compte:compte,page:'dashboard'})
                 }
             });
     });

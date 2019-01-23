@@ -12,13 +12,15 @@ exports.index = function (req, res) {
 };
 
 exports.guichet_create = function (req, res) {
+    
     let {id, amount} = req.body
     User.findOne({_id : req.session.user.id}, function(err, user) {
         if (err) throw err;
         user.comptes.forEach(compte => {
             if(compte._id == id){
+                console.log(req.session.user, compte);
                 dateNow = new Date();
-                compte.transactions.push(new Transaction({amount:amount,from:req.session.user.id,createdAt:dateNow}));
+                compte.transactions.push(new Transaction({amount:amount,from:{user:req.session.user.username , compte:compte.name},createdAt:dateNow}));
             }
         });
         var myquery = { _id: req.session.user.id };
