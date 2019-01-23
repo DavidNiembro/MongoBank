@@ -28,7 +28,15 @@ exports.compte_create = function (req, res) {
 };
 
 exports.compte_details = function (req, res) {
-    res.render('pages/compte',{page:'dashboard'})
+    User.findOne({_id : req.session.user.id}, function(err, result) {
+        if (err) throw err;
+            result.comptes.forEach(compte => {
+                if(compte._id==req.params.id){
+                    console.log(compte)
+                    res.render('pages/compte',{compte:compte,page:'dashboard'})
+                }
+            });
+    });
     
 };
 

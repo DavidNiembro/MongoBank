@@ -6,12 +6,12 @@ exports.index = function (req, res) {
     User.findOne({_id : req.session.user.id}, function(err, result) {
         if (err) throw err;
             comptes = result.comptes;
-            res.render('pages/guichet',{ comptes:comptes, page:'guichet'});
+            res.render('pages/transactions',{ comptes:comptes, page:'transactions'});
     });
 
 };
 
-exports.guichet_create = function (req, res) {
+exports.transactions_create = function (req, res) {
     let {id, amount} = req.body
     User.findOne({_id : req.session.user.id}, function(err, user) {
         if (err) throw err;

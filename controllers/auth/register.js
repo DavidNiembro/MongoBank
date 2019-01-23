@@ -38,10 +38,11 @@ exports.register = function (req, res) {
                 res.redirect('/login');
           } else {
               if (error.code ===  11000) { // this error gets thrown only if similar user record already exist.
-                  return res.status(409).send('user already exist!')
+                  //return res.status(409).send('user already exist!')
+                  res.redirect('/login');
               } else {
                   console.log(JSON.stringify(error, null, 2)); // you might want to do this to examine and trace where the problem is emanating from
-                  return res.status(500).send('error signing up user')
+                  res.redirect('/login');
               }
           }
       })
