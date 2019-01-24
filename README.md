@@ -18,15 +18,15 @@
 
 ## MongoDB Tutorial
 
-### Qu'es que MongoDB
+### Qu'est-ce que MongoDB
 
 MongoDB est une base de donnée NoSQL (Not only SQL) orientée documents. MongoDB est aujourd'hui la base de donnée NoSQL la plus populaire.
 
-Les données sont stockés sous forme de documents dans des collection au lieu de stocker les données dans des colonnes et les lignes comme une base de données relationnelle type MySQL.
+Les données sont stockées sous forme de documents dans des collections au lieu de stocker les données dans des colonnes et les lignes comme une base de données relationnelle type MySQL.
 Ces documents sont sous format JSON.
 MongoDB a l'avantage d'étre très performant, évolutif et ne nécessite pas de schéma.
 
-Il est utilisable dans les principaux langage de programmation comme :
+Il est utilisable dans les principaux langages de programmation comme :
 + C#
 + Java
 + JavaScript
@@ -38,7 +38,7 @@ Il est utilisable dans les principaux langage de programmation comme :
 
 ### Quand utiliser MongoDB
 
-MongoDB a de nombreux avantage et est efficace pour différent type de projet, comme :
+MongoDB a de nombreux avantages et est efficace pour différents types de projets, comme :
 
 + Catalogue de produits
 + Analyse en temps réel
