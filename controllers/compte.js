@@ -39,7 +39,7 @@ exports.compte_details = function (req, res) {
     User.findOne({_id : req.session.user.id}, function(err, result) {
         if (err) throw err;
             result.comptes.forEach(compte => {
-                if(compte._id==req.params.id){
+                if(compte._id == req.params.id){
                     total = 0;
                     compte.transactions.forEach(function(transaction) {
                             total += transaction.amount;
