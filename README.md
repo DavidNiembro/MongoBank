@@ -24,7 +24,7 @@ MongoDB est une base de donnée NoSQL (Not only SQL) orientée documents.
 
 Les données sont stockés sous forme de documents dans des collection au lieu de stocker les données dans des colonnes et les lignes comme une base de données relationnelle type MySQL.
 Ces documents sont sous format JSON.
-MongoDB a l'avantage d'étre très performant,évolutif et ne nécéssite pas de schéma.
+MongoDB a l'avantage d'étre très performant, évolutif et ne nécessite pas de schéma.
 
 Il est utilisable dans les principaux langage de programmation comme :
 + C#
@@ -44,27 +44,30 @@ MongoDB a de nombreux avantage et est efficace pour différent type de projet, c
 + Analyse en temps réel
 + Mise en cache
 + Données de géolocalisation
++ Réseaux sociaux
 
+### Exemple d'utilisation avec le shell MongoDB
 
-### Ajouter un nouveau document dans une collection
+#### Ajouter un nouveau document dans une collection
 ```console
 db.mycollection.insertOne(name: "sue" , age : 26)
 ```
 
-### Trouver un document dans une collection
+#### Trouver un document dans une collection
 ```console
 db.mycollection.find()
 ```
 
-### Mettre à jour un document dans une collection
+#### Mettre à jour un document dans une collection
 ```console
 db.mycollection.updateOne({name:{$eq : "sue"} },{$set : {age : "18 "} })
 ```
 
-### Supprimer un document dans une collection
+#### Supprimer un document dans une collection
 ```console
 db.mycollection.deleteOne({name : "sue"})
 ```
+
 ## Installation MongoBank
 
 ### Prérequis
