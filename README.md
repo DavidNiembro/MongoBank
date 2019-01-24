@@ -2,12 +2,12 @@
 
 ## Installation mongodb
 
-1. Se rendre sur le site de téléchargement de mongodb : https://www.mongodb.com/download-center?lang=fr-fr
-2. Cliquez sur **Server**
+1. Rendez-vous sur le site de téléchargement de mongodb : https://www.mongodb.com/download-center?lang=fr-fr
+2. Cliquez sur : **Server**
 3. Selectionnez la dernière version ainsi que votre OS.
-4. Selectionnez le package **MSI**.
-5. Cliquez sur **télécharger**.
-6. à la fin du téléchargement , Accédez au répertoire où vous avez téléchargé MongoDB. Par défaut, c'est le répértoire **téléchargements**.
+4. Selectionnez le package : **MSI**.
+5. Cliquez sur : **télécharger**.
+6. à la fin du téléchargement , Accédez au répertoire où vous avez téléchargé MongoDB. Par défaut, c'est le répértoire : **téléchargements**.
 7. Exécutez le fichier **.msi**.
 8. Cliquez sur **next**.
 9. Acceptez les conditions.
