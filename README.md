@@ -16,27 +16,58 @@
 12. Cliquez sur **next**.
 13. Vérifiez l'installation en ouvrant un interpréteur de commande et en copiant la ligne suivante : **"C:/Program Files/MongoDB/Server/4.0/bin/mongo.exe"**
 
-## Basic use of mongodb in mongo Shell
+## MongoDB Tutorial
 
-### Add a new document to a collection
+### Qu'es que MongoDB
+
+MongoDB est une base de donnée NoSQL (Not only SQL) orientée documents. MongoDB est aujourd'hui la base de donnée NoSQL la plus populaire.
+
+Les données sont stockés sous forme de documents dans des collection au lieu de stocker les données dans des colonnes et les lignes comme une base de données relationnelle type MySQL.
+Ces documents sont sous format JSON.
+MongoDB a l'avantage d'étre très performant, évolutif et ne nécessite pas de schéma.
+
+Il est utilisable dans les principaux langage de programmation comme :
++ C#
++ Java
++ JavaScript
++ Go
++ Erlang
++ PHP
++ Python
++ Ruby
+
+### Quand utiliser MongoDB
+
+MongoDB a de nombreux avantage et est efficace pour différent type de projet, comme :
+
++ Catalogue de produits
++ Analyse en temps réel
++ Mise en cache
++ Données de géolocalisation
++ Réseaux sociaux
+
+### Exemple d'utilisation avec le shell MongoDB
+
+#### Ajouter un nouveau document dans une collection
 ```console
 db.mycollection.insertOne(name: "sue" , age : 26)
 ```
 
-### Find a document in a mcollection
+#### Trouver un document dans une collection
 ```console
 db.mycollection.find()
 ```
 
-### Update a document in a collection
+#### Mettre à jour un document dans une collection
 ```console
 db.mycollection.updateOne({name:{$eq : "sue"} },{$set : {age : "18 "} })
 ```
 
-### Delete a document in a collection
+#### Supprimer un document dans une collection
 ```console
 db.mycollection.deleteOne({name : "sue"})
 ```
+
 ## Installation MongoBank
 
 ### Prérequis
