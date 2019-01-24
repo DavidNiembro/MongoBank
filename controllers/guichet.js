@@ -6,7 +6,7 @@ exports.index = function (req, res) {
     User.findOne({_id : req.session.user.id}, function(err, result) {
         if (err) throw err;
             comptes = result.comptes;
-            res.render('pages/guichet',{ comptes:comptes, page:'guichet'});
+            res.render('pages/guichet',{ session: req.session , comptes:comptes, page:'guichet'});
     });
 
 };
@@ -18,7 +18,6 @@ exports.guichet_create = function (req, res) {
         if (err) throw err;
         user.comptes.forEach(compte => {
             if(compte._id == id){
-                console.log(req.session.user, compte);
                 dateNow = new Date();
                 compte.transactions.push(new Transaction({amount:amount,from:{user:req.session.user.username , compte:compte.name},createdAt:dateNow}));
             }

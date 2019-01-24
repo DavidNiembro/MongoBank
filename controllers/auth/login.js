@@ -14,7 +14,6 @@ exports.index = function (req, res) {
 exports.login = function (req, res) {
     
     let {username, password} = req.body;
-    console.log(username)
     User.findOne({username: username}, 'username email password', (err, userData) => {
         if(userData==null){
            //invalid login credentials'

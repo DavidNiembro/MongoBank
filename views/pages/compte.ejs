@@ -19,7 +19,9 @@
         <!-- End of Topbar -->
 
         <div class="container-fluid">
-
+          <div style="margin-top:50px;margin-bottom:50px">
+            <h1 style="font-size:50px">Solde: <%= compte.total %> CHF</h1>
+          </div>
           <!-- Area Chart -->
           <div class="card border-0 shadow mb-4">
             <table class="table table-striped">
@@ -33,7 +35,7 @@
                   <tr>
                       <td><%= transaction.from.user %></td>
                       <td><%= transaction.from.compte %></td>
-                      <td><%= moment(transaction.createdAt).format('D MMMM YYYY H:mm') %></td>
+                      <td><%= transaction.createdAt %></td>
                       <td><%= transaction.amount %> CHF</td>
                   </tr>
                 <% }); %>

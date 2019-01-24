@@ -13,7 +13,7 @@ exports.index = function (req, res) {
                   });
                   comptes[key].total=total
               });
-            res.render('pages/dashboard',{comptes:comptes,page:'dashboard'});
+            res.render('pages/dashboard',{session: req.session,comptes:comptes,page:'dashboard'});
     });
 };
 
@@ -40,8 +40,12 @@ exports.compte_details = function (req, res) {
         if (err) throw err;
             result.comptes.forEach(compte => {
                 if(compte._id==req.params.id){
-                    console.log(compte)
-                    res.render('pages/compte',{ moment:moment,compte:compte,page:'dashboard'})
+                    total = 0;
+                    compte.transactions.forEach(function(transaction) {
+                            total += transaction.amount;
+                    });
+                    compte.total = total
+                    res.render('pages/compte',{ session: req.session, moment:moment,compte:compte,page:'dashboard'})
                 }
             });
     });
