@@ -20,7 +20,7 @@
 
 ### Qu'es que MongoDB
 
-MongoDB est une base de donnée NoSQL (Not only SQL) orientée documents.
+MongoDB est une base de donnée NoSQL (Not only SQL) orientée documents. MongoDB est aujourd'hui la base de donnée NoSQL la plus populaire.
 
 Les données sont stockés sous forme de documents dans des collection au lieu de stocker les données dans des colonnes et les lignes comme une base de données relationnelle type MySQL.
 Ces documents sont sous format JSON.
