@@ -40,15 +40,17 @@
                 <tr>
                   <th scope="col">De</th>
                   <th scope="col">Compte</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Montant</th>
+                  <th scope="col" class="text-center">Date</th>
+                  <th scope="col" class="text-right">Montant</th>
+                  <th scope="col"></th>
                 </tr>
                 <% compte.transactions.forEach(function(transaction) { %>
                   <tr>
                       <td><%= transaction.from.user %></td>
                       <td><%= transaction.from.compte %></td>
-                      <td><%= moment(transaction.createdAt).format('DD-MM-YYYY') %></td>
-                      <td><%= transaction.amount %> CHF</td>
+                      <td class="text-center"><%= moment(transaction.createdAt).format('DD-MM-YYYY') %></td>
+                      <td class="text-right"><%= transaction.amount %></td>
+                      <td class="text-left">CHF</td>
                   </tr>
                 <% }); %>
                 <tr>

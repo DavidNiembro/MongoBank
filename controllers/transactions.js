@@ -26,9 +26,9 @@ exports.transactions_create = function (req, res) {
                     if (err) throw err;
                         compte.transactions.push(new Transaction({amount:-amount,from:{user:userFk.username , compte:compte.name},createdAt:dateNow}))
                         var myquery = { _id: req.session.user.id };
-                        //User.updateOne(myquery, user, function(err) {
-                          //  if (err) throw err;
-                        //});
+                        User.updateOne(myquery, user, function(err) {
+                            if (err) throw err;
+                        });
                 });
             }
         });
@@ -39,9 +39,7 @@ exports.transactions_create = function (req, res) {
                 if(comptefk.name=="Courant"){
                         dateNow = new Date();
                         User.findOne({_id : req.session.user.id}, function(err, user) {
-                            console.log("4 =>",user)
                             user.comptes.forEach(compte => {
-                                console.log("5")
                                 if(compte._id == id){
                             comptefk.transactions.push(new Transaction({amount:amount,from:{user:user.username , compte:compte.name},createdAt:dateNow}))
                             var myqueryfk = { _id: fk };
