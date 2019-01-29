@@ -22,8 +22,7 @@ exports.index = function (req, res) {
  */
 exports.transactions_create = function (req, res) {
     let {id, fk, amount} = req.body
-    amount = abs(amount)
-
+    
     //Find user FROM
     User.findOne({_id : req.session.user.id}, function(err, user) {
         if (err) throw err;

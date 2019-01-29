@@ -45,8 +45,9 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-//Create the app
-var port = 1234;
+/**
+ * Create the app
+ */
 app.use(express.static(__dirname + '/public/'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -76,6 +77,8 @@ app.all('/logout', (req, res) => {
       res.redirect('/login');
 })
 app.use('/', compte);
+
+var port = 1234;
 
 /**
  * Start app
