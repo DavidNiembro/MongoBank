@@ -1,0 +1,216 @@
+<% include layout %>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <% include parts/sidebar%>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <% include parts/menu%>
+
+        <!-- End of Topbar -->
+
+        <div class="container-fluid">
+
+          <div class="card border-0 shadow mb-4">
+            <div class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">Solde</h6>
+            </div>
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas id="solde"></canvas>
+              </div>
+            </div>
+          </div>
+  
+          <div style="margin-top:50px;margin-bottom:50px">
+            <h1 style="font-size:50px">Solde: <%= compte.total %> CHF</h1>
+          </div>
+          <!-- Area Chart -->
+          <div class="card border-0 shadow mb-4">
+            <table class="table table-striped">
+                <tr>
+                  <th scope="col">De</th>
+                  <th scope="col">Compte</th>
+                  <th scope="col" class="text-center">Date</th>
+                  <th scope="col" class="text-right">Montant</th>
+                  <th scope="col"></th>
+                </tr>
+                <% compte.transactions.forEach(function(transaction) { %>
+                  <tr>
+                      <td><%= transaction.from.user %></td>
+                      <td><%= transaction.from.compte %></td>
+                      <td class="text-center"><%= moment(transaction.createdAt).format('DD-MM-YYYY') %></td>
+                      <td class="text-right"><%= transaction.amount %></td>
+                      <td class="text-left">CHF</td>
+                  </tr>
+                <% }); %>
+                <tr>
+            </table>
+          </div>
+
+        <!-- /.container-fluid -->
+
+      </div>
+      
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; MongoBank 2019</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Prêt à quitter ?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Cliquez sur "Se déconnecter" si vous êtes prêt à laisser cette session</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+          <form method="POST" action="/logout">
+            <button type="submit" class="btn btn-primary">Se déconnecter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="js/jquery.easing.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="js/Chart.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/chart-area-demo.js"></script>
+
+  <script>
+    // Area Chart Example
+    new Chart(document.getElementById("solde"), {
+      type: 'line',
+      data: {
+        labels: <%- JSON.stringify(compte.chartLabel) %>,
+        datasets: [{
+          label: "Montant",
+          lineTension: 0.3,
+          backgroundColor: "rgba(78, 115, 223, 0.05)",
+          borderColor: "rgba(78, 115, 223, 1)",
+          pointRadius: 3,
+          pointBackgroundColor: "rgba(78, 115, 223, 1)",
+          pointBorderColor: "rgba(78, 115, 223, 1)",
+          pointHoverRadius: 3,
+          pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+          pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+          pointHitRadius: 10,
+          pointBorderWidth: 2,
+          data: [<%= compte.chart %>],
+        }],
+      },
+      options: {
+        maintainAspectRatio: false,
+        layout: {
+          padding: {
+            left: 0,
+            right: 25,
+            top: 25,
+            bottom: 25
+          }
+        },
+        scales: {
+          xAxes: [{
+            time: {
+              unit: 'date'
+            },
+            gridLines: {
+              display: false,
+              drawBorder: false
+            },
+            ticks: {
+              maxTicksLimit: 7
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              maxTicksLimit: 5,
+              padding: 10,
+              // Include a dollar sign in the ticks
+              callback: function(value, index, values) {
+                return 'CHF ' + number_format(value);
+              }
+            },
+            gridLines: {
+              color: "rgb(234, 236, 244)",
+              zeroLineColor: "rgb(234, 236, 244)",
+              drawBorder: false,
+              borderDash: [2],
+              zeroLineBorderDash: [2]
+            }
+          }],
+        },
+        legend: {
+          display: false
+        },
+        tooltips: {
+          backgroundColor: "rgb(255,255,255)",
+          bodyFontColor: "#858796",
+          titleMarginBottom: 10,
+          titleFontColor: '#6e707e',
+          titleFontSize: 14,
+          borderColor: '#dddfeb',
+          borderWidth: 1,
+          xPadding: 15,
+          yPadding: 15,
+          displayColors: false,
+          intersect: false,
+          mode: 'index',
+          caretPadding: 10,
+          callbacks: {
+            label: function(tooltipItem, chart) {
+              var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+              return datasetLabel + ': CHF ' + number_format(tooltipItem.yLabel);
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

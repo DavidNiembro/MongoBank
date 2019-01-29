@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MongoBank - Login</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="css/all.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+  </head>
+
+  <body class="bg-dark">
+    <div class="container">
+      <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Connexion</div>
+        <div class="card-body">
+          <form method="POST" action="/login">
+            <div class="form-group">
+              <div class="form-label-group">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Nom d'utilisateur" required="required" autofocus="autofocus">
+                <label for="username">Nom d'utilisateur</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-label-group">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" required="required">
+                <label for="password">Mot de Passe</label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" >Se connecter</button>
+          </form>
+          <div class="text-center">
+            <a class="d-block small mt-3" href="/register">Créer un compte</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="js/jquery.easing.js"></script>
+
+  </body>
+
+</html>

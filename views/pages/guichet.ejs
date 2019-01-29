@@ -1,0 +1,112 @@
+<% include layout %>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <% include parts/sidebar%>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <% include parts/menu%>
+
+        <!-- End of Topbar -->
+
+        <div class="container-fluid">
+
+          <div class="row">   
+            <div class="col-lg-12">
+              <div class="card border-0 shadow mb-4">
+                  <div class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h6 class="m-0 font-weight-bold text-primary">Déposer de l'argent</h6>
+                  </div>
+                  <div class="card-body">
+                    <form method="POST" action="/guichet">
+                      <div class="form-group">
+                        <label>Montant</label>
+                        <input type="number" name="amount" class="form-control" >
+                      </div>
+                      <div class="form-group">
+                        <label>Compte</label>
+                        <select name="id" class="form-control"> 
+                            <% comptes.forEach(function(compte) { %>
+                                    <option value="<%= compte._id %>"><%= compte.name %></option>
+                            <% }); %>
+                          </select>
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Confirmer</button>
+                      </div>
+                    </form>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- /.container-fluid -->
+
+      </div>
+      
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; MongoBank 2019</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Prêt à quitter ?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Cliquez sur "Se déconnecter" si vous êtes prêt à laisser cette session</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+          <form method="POST" action="/logout">
+            <button type="submit" class="btn btn-primary">Se déconnecter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="js/jquery.easing.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.js"></script>
+
+</body>
+
+</html>
