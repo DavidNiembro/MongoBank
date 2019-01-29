@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// we create a user schema
+// User schema
 let userSchema = new Schema({
     username: {
         type: String,
@@ -36,7 +36,7 @@ let userSchema = new Schema({
         type: Number,
         required: false
     },
-}, {runSettersOnQuery: true}); // 'runSettersOnQuery' is used to implement the specifications in our model schema such as the 'trim' option.
+}, {runSettersOnQuery: true});
 
 userSchema.pre('save', function (next) {
   this.email = this

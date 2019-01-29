@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// we create a user schema
+// Transaction schema
 let transactionSchema = new Schema({
     from: {
         type: Object,
@@ -24,12 +24,6 @@ let transactionSchema = new Schema({
 }, {runSettersOnQuery: true});
 
 transactionSchema.pre('save', function (next) {
-  
-  /*var currentDate = new Date().getTime();
-  this.updatedAt = currentDate;
-  if (!this.created_at) {
-    this.createdAt = currentDate;
-  }*/
   next();
 })
 
